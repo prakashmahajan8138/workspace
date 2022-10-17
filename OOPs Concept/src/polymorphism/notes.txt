@@ -1,0 +1,144 @@
+polymorphism--one functionality --multiple(changing) forms
+1.static --compile time --early binding --resolved by javac.
+
+Achieved via method overloading
+
+rules --can be in same class or in sub classes.
+same method name
+signature --different(no of arguments/type of args/both)
+return type --ignored by compler.
+
+
+e.g.==void test(int i,int j){...}
+void test(int i){..}
+void test(double i){...}
+void test(int i,double j,boolean flag){..}
+int test(int a,int b){...} //javac compiler error
+
+
+2.Dynamic polymorphism --late binding --dynamic method dispatch --resolved by JRE
+
+Dynamic method dispatch --which form of method to send for execution --This decision can't be
+taken by javac --BUT taken by JRE
+
+Achieved via --method overriding
+
+Method Overriding --means of achieving run-time polymorphism
+
+No "virtual" keyword in java(i.e. all methods are implicitly virtual)
+
+All java methods can be overridden :if they are not marked as private,static ,final
+
+Super -class form of method  --overridden method
+
+sub -class form --overridding form of the method
+
+Rules : to be followed by overriding method in sub-class
+
+1.same method name same signature return type must be same or its sub -type (co-variance)
+
+eg of Co-variance
+
+class A{
+   A getInstance()
+       {
+         return new A();
+          }
+     }
+     class B extends A
+     {
+       B getInstance()
+       {
+       return new B();
+       }
+     }
+     
+ 2. scope --must be same or wider.(protected specifier or public)
+ 3.can not add in its throws clause any new or broader checked exceptions.
+ BUT can add any new unchecked exceptions.
+ Can add any subset or sub-class of checked exceptions.
+ 
+ class A
+ {
+ void show() throws IOExc
+ {...}
+ }
+ 
+ 
+ 
+  Early Binding                          Late Binding
+ 
+ static polymorphism--                   overridding method
+ detected by javac (early               
+ binding) via method
+ overloading.
+ 
+ 1.Can exist in same class or in         1. can exist only in inheritance hierarchy
+   inheritance hierarchy.                 
+      
+ 2.same method name,return type ignored    2.Must have same name same sinature,return type
+                                             can either be same or sub type of super class
+ 3.signature -different                      return type(co-variance)
+ (no/type/or both)
+ 
+ 4.No rules on access specifiers           3.overridding form of the method must either same access specifier or wider
+ 
+ 5.No rules regarding exceptions           4.overridding form of the method can't throw any NEW or wider checked exceptions
+ handling
+ 
+ 
+ //Annotations:: //Decorators are nothing but annotations in python
+ 
+ java annotations is tag that represents the metadata i.e. attached with class,interface,methods or fields 
+ to indicate some additional information which can be used by java compiler and jvm.
+ 
+ Annotations are alternative for xml
+ 
+ eg @Override, @deprecated,@SuppreeWarnings,@FunctionalInterface
+  @Override--
+ annotations meant for javac .
+ Method level annotations
+ Optional BUT recommended.
+ 
+ eg:
+ public class Orange extends Fruit{
+ {
+ @Override
+ public void taste()
+ {
+ ...
+ }
+ }
+ 
+ while overriding the method  --if u want to inform the compiler that :
+   the following is the overridding form of method use
+   
+   @Override
+   method declaration{...}
+   
+   run time polymorphism or Dynamic  method dispatch in detail
+   
+   Super -class ref can directly refer to sub-class object(direct=w/o type casting) as its the example of
+   up-casting(similar to widening auto conversion)
+   
+   when such a super class ref is used to invoke the overridding method:
+    which form of the method to send for execution : this  decision is taken by JRE and not by compiler.
+    In such case --overridding form of the method(sub-class version) will be dispatched for execution.
+    
+    
+    javac resolves the method binding by the type of the reference & JVM resolves the method bining by
+    type of the object it's referring to. 
+    
+    
+    Up-casting ::The most important aspect of inheritance is the relationship expressed
+                 between the new class and the base class.this relationship can be summerized by saying,
+                 The new class "IS A" type of the existing class.
+                 
+                 eg: Student is of Person type or Faculty is of Person type.
+                 
+                 The description is not just a fancy way of explaining inheritance -it's supported directly by the
+                 language.
+ 
+ 
+ 
+ 
